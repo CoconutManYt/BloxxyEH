@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bloxxy - EH</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="app">
+
+  <div class="titlebar">
+    <div class="titlebar-left">
+      <div class="titlebar-controls">
+        <button class="win-btn close" id="closeBtn"></button>
+        <button class="win-btn min" id="minimBtn"></button>
+        <button class="win-btn max" id="fullBtn"></button>
+      </div>
+      <div class="titlebar-divider"></div>
+      <div class="titlebar-logo">
+        <svg class="titlebar-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>
+        </svg>
+        <span class="titlebar-name">Bloxxy</span>
+      </div>
+      <div class="titlebar-divider"></div>
+      <span class="titlebar-subtitle">Emergency Hamburg Auto Farm · v0.0.1</span>
+    </div>
+    <!-- 
+    <div style="display:flex;align-items:center;gap:6px;">
+      <span style="font-size:10px;color:var(--text-3);font-family:'DM Mono',monospace;">Bloxxy is free, and will never be for sale.</span>
+    </div>
+    -->
+  </div>
+
+  <div class="app-body">
+
+    <aside class="sidebar">
+      <button class="nav-btn active" data-page="home" data-tip="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/>
+          <path d="M9 21V12h6v9"/>
+        </svg>
+      </button>
+
+      <button class="nav-btn" data-page="settings" data-tip="Settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/>
+        </svg>
+      </button>
+
+      <button class="nav-btn" data-page="servers" data-tip="Servers">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-server-icon lucide-server"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>
+      </button>
+
+      <div class="sidebar-spacer"></div>
+
+      <button class="nav-btn" data-page="user" data-tip="User">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+
+      <button class="nav-btn" data-page="info" data-tip="Info">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="16" x2="12" y2="12"/>
+          <line x1="12" y1="8" x2="12.01" y2="8"/>
+        </svg>
+      </button>
+    </aside>
+    <!-- Main tab -->
+    <main class="main">
+
+      <div class="page active" id="page-home">
+        <div class="page-header">
+          <div class="page-title">Auto Farm</div>
+          <div class="page-sub">Configure your auto farm settings below</div>
+        </div>
+
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-value">70<span>%</span></div>
+            <div class="stat-label">Success Rate</div>
+          </div>
+          <div class="stat-card">
+            <div id="displayActivity" class="stat-value" style="color:var(--green)">ON</div>
+            <div class="stat-label">Auto Farm</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">N/A</div>
+            <div class="stat-label">Logged in user</div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Auto Farm</div>
+          <div class="card">
+            <div class="row">
+              <div class="row-left">
+                <div class="row-label">Auto Farm</div>
+                <div class="row-desc">Enable the automatic farm process.</div>
+              </div>
+              <label id="autofarmToggle" class="toggle"><input type="checkbox" /><div class="toggle-track"></div></label>
+            </div>
+            <!-- 
+            <div class="row">
+              <div class="row-left">
+                <div class="row-label">Aim Keybind</div>
+                <div class="row-desc">Hold to activate aim assist</div>
+              </div>
+              <span class="keybind">Right</span>
+            </div>
+            -->
+            <div class="row">
+              <div class="row-left">
+                <div class="row-label">Admin Car</div>
+                <div class="row-desc">Enable this if you own the Admin Car gamepass.</div>
+              </div>
+              <label class="toggle"><input type="checkbox" /><div class="toggle-track"></div></label>
+            </div>
+            <div class="row">
+              <div class="row-left">
+                <div class="row-label">Maximum Gold</div>
+                <div class="row-desc">Maximum Gold held until sold</div>
+              </div>
+              <div class="slider-wrap">
+                <input type="range" class="slider" min="10" max="85" value="50" />
+                <span class="slider-val">50</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Auto Buy</div>
+          <div class="card">
+            <div class="row">
+              <div class="row-left">
+                <div class="row-label">Auto Buy</div>
+                <div class="row-desc">Will buy bombs/chainsaw automatically.</div>
+              </div>
+              <label class="toggle"><input type="checkbox" checked /><div class="toggle-track"></div></label>
+            </div>
+            <!--
+            <div class="row">
+              <div class="row-left">
+                <div class="row-label">Trigger Keybind</div>
+                <div class="row-desc">Key to activate auto trigger</div>
+              </div>
+              <span class="keybind">Delete</span>
+            </div>
+            -->
+          </div>
+        </div>
+        
+        <div class="section">
+          <div class="section-label">Robberies</div>
+          <div class="card">
+            <div class="row">
+              <div class="row-left">
+                <div class="row-label">Robbery</div>
+                <div class="row-desc">Choose witch robbery to do (Max 1 in free version)</div>
+              </div>
+              <select id="robberySelect" class="select">
+                <option>Bank</option>
+                <option>Jewelery</option>
+                <option>Safes</option>
+              </select>
+            </div>
+            <div class="row">
+              <div class="row-left">
+                <div class="row-label">Safe Robbery Keybind</div>
+                <div class="row-desc">Will automaticly start a safe reborry | You need at least one bomb and be in a good posistion relative to the safe.</div>
+              </div>
+              <span id="safeKeybind" class="keybind">F10</span>
+            </div>
+            <div class="row">
+              <div class="row-left">
+                <div class="row-label">Private Server Link</div>
+                <div class="row-desc">Put your private server link here.</div>
+              </div>
+              <label class="textbox"><input id="privLink"  type="textbox" /><div class="textbox"></div></label>
+            </div>
+            <div class="row">
+              <div class="row-left">
+                <div class="row-label">Reset wait time</div>
+                <div class="row-desc">Will rejoin the private server to put back the wait time at 10 minutes.</div>
+              </div>
+              <button id="resetBtn" class="save-btn">Reset</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Emergency</div>
+          <div class="card">
+            <div class="row">
+              <div class="row-left">
+                <div class="row-label">Emergency Stop Keybind</div>
+                <div class="row-desc">Instantly closes the script and stops the farming.</div>
+              </div>
+              <span id="closeKeybind" class="keybind">F5</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- settings -->
+      <div class="page" id="page-settings">
+        <div class="page-header">
+          <div class="page-title">Settings</div>
+          <div class="page-sub">Adjust wait times, display, and other settings</div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Wait</div>
+          <div class="card">
+            <div class="row">
+              <div class="row-left">
+                <div class="row-label">Advanced checking</div>
+                <div class="row-desc">Instead of just waiting 10 minutes between robberies will actually look for indicators (like the lights at the bank).</div>
+              </div>
+              <label class="toggle"><input type="checkbox" checked /><div class="toggle-track"></div></label>
+            </div>
+            <div class="row">
+              <div class="row-left">
+                <div class="row-label">Custom wait time</div>
+                <div class="row-desc">Use the slider bellow to change it.</div>
+              </div>
+              <label class="toggle"><input type="checkbox" /><div class="toggle-track"></div></label>
+            </div>
+            <div class="row">
+              <div class="row-left">
+                <div class="row-label">Cusom wait time</div>
+                <div class="row-desc">Wait time between robberies.</div>
+              </div>
+              <div class="slider-wrap">
+                <input id="timeSlider" type="range" class="slider" min="10" max="30" value="10" />
+                <span class="slider-val">10min</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Field of View</div>
+          <div class="card">
+            <div class="row">
+              <div class="row-left">
+                <div class="row-label">FOV Size</div>
+                <div class="row-desc">Detection area radius in pixels</div>
+              </div>
+              <div class="slider-wrap">
+                <input type="range" class="slider" min="10" max="400" value="120" />
+                <span class="slider-val">120px</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="row-left">
+                <div class="row-label">FOV Dynamic-Resizing</div>
+                <div class="row-desc">Adjust FOV based on target distance</div>
+              </div>
+              <label class="toggle"><input type="checkbox" /><div class="toggle-track"></div></label>
+            </div>
+            <div class="row">
+              <div class="row-left">
+                <div class="row-label">Real Travelling FOV</div>
+                <div class="row-desc">FOV follows crosshair movement</div>
+              </div>
+              <label class="toggle"><input type="checkbox" /><div class="toggle-track"></div></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Detection ESP</div>
+          <div class="card">
+            <div class="row">
+              <div class="row-left">
+                <div class="row-label">Detection ESP</div>
+                <div class="row-desc">Show bounding boxes on detected targets</div>
+              </div>
+              <label class="toggle"><input type="checkbox" checked /><div class="toggle-track"></div></label>
+            </div>
+            <div class="row">
+              <div class="row-left">
+                <div class="row-label">ESP Dynamic-Resizing</div>
+              </div>
+              <label class="toggle"><input type="checkbox" /><div class="toggle-track"></div></label>
+            </div>
+            <div class="row">
+              <div class="row-left">
+                <div class="row-label">ESP Tracers</div>
+                <div class="row-desc">Draw lines from screen edge to targets</div>
+              </div>
+              <label class="toggle"><input type="checkbox" /><div class="toggle-track"></div></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Interface</div>
+          <div class="card">
+            <div class="row">
+              <div class="row-left">
+                <div class="row-label">Mouse Background Effect</div>
+              </div>
+              <label class="toggle"><input type="checkbox" checked /><div class="toggle-track"></div></label>
+            </div>
+            <div class="row">
+              <div class="row-left">
+                <div class="row-label">UI TopMost</div>
+                <div class="row-desc">Keep window above other applications</div>
+              </div>
+              <label class="toggle"><input type="checkbox" /><div class="toggle-track"></div></label>
+            </div>
+            <div class="row">
+              <div class="row-left">
+                <div class="row-label">Save Config</div>
+                <div class="row-desc">Save current settings to file</div>
+              </div>
+              <button id="saveStgs" class="save-btn">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Servers -->
+      <div class="page" id="page-servers">
+        <div class="page-header">
+          <div class="page-title">Servers</div>
+          <div class="page-sub">Configure your witch servers you want to easely join</div>
+        </div>
+          <div class="section">
+  <div class="section-label">Server 1</div>
+  <div class="card">
+    <div class="row">
+      <div class="row-left">
+        <div class="row-label">Server Name</div>
+        <div class="row-desc">Enter a name for this server</div>
+      </div>
+      <label class="textbox"><input id="server1name" type="text" placeholder="e.g. Main Server"/><div class="textbox"></div></label>
+    </div>
+    <div class="row">
+      <div class="row-left">
+        <div class="row-label">Server Code</div>
+        <div class="row-desc">Enter your server code</div>
+      </div>
+      <label class="textbox"><input id="server1" type="text" /><div class="textbox"></div></label>
+      <button class="btn-primary" id="server1btn">Join</button>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Server 2</div>
+  <div class="card">
+    <div class="row">
+      <div class="row-left">
+        <div class="row-label">Server Name</div>
+        <div class="row-desc">Enter a name for this server</div>
+      </div>
+      <label class="textbox"><input id="server2name" type="text" placeholder="e.g. Backup Server"/><div class="textbox"></div></label>
+    </div>
+    <div class="row">
+      <div class="row-left">
+        <div class="row-label">Server Code</div>
+        <div class="row-desc">Enter your server code</div>
+      </div>
+      <label class="textbox"><input id="server2" type="text" /><div class="textbox"></div></label>
+      <button class="btn-primary" id="server2btn">Join</button>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Server 3</div>
+  <div class="card">
+    <div class="row">
+      <div class="row-left">
+        <div class="row-label">Server Name</div>
+        <div class="row-desc">Enter a name for this server</div>
+      </div>
+      <label class="textbox"><input id="server3name" type="text" placeholder="e.g. VIP Server"/><div class="textbox"></div></label>
+    </div>
+    <div class="row">
+      <div class="row-left">
+        <div class="row-label">Server Code</div>
+        <div class="row-desc">Enter your server code</div>
+      </div>
+      <label class="textbox"><input id="server3" type="text" /><div class="textbox"></div></label>
+      <button class="btn-primary" id="server3btn">Join</button>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Server 4</div>
+  <div class="card">
+    <div class="row">
+      <div class="row-left">
+        <div class="row-label">Server Name</div>
+        <div class="row-desc">Enter a name for this server</div>
+      </div>
+      <label class="textbox"><input id="server4name" type="text" placeholder="e.g. EU Server"/><div class="textbox"></div></label>
+    </div>
+    <div class="row">
+      <div class="row-left">
+        <div class="row-label">Server Code</div>
+        <div class="row-desc">Enter your server code</div>
+      </div>
+      <label class="textbox"><input id="server4" type="text" /><div class="textbox"></div></label>
+      <button class="btn-primary" id="server4btn">Join</button>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-label">Server 5</div>
+  <div class="card">
+    <div class="row">
+      <div class="row-left">
+        <div class="row-label">Server Name</div>
+        <div class="row-desc">Enter a name for this server</div>
+      </div>
+      <label class="textbox"><input id="server5name" type="text" placeholder="e.g. US Server"/><div class="textbox"></div></label>
+    </div>
+    <div class="row">
+        <div class="row-left">
+            <div class="row-label">Server Code</div>
+            <div class="row-desc">Enter your server code</div>
+            </div>
+            <label class="textbox"><input id="server5" type="text" /><div class="textbox"></div></label>
+            <button class="btn-primary" id="server5btn">Join</button>
+          </div>
+        </div>
+      </div>
+    </div>
+      <!-- User Section -->
+      <div class="page" id="page-user">
+        <div class="page-header">
+          <div class="page-title">User</div>
+          <div class="page-sub">Log Into your permium account</div>
+        </div>
+        <div class="card">
+            <div class="row">
+              <span class="row-label" style="color:var(--text-2)">Comming Soon!</span>
+            </div>
+        </div>
+      </div>
+      <!-- Info -->
+      <div class="page" id="page-info">
+        <div class="info-logo">
+          <svg class="info-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>
+          </svg>
+          <div class="info-logo-name">Bloxxy</div>
+          <div class="info-logo-version">Emergency Hamburg Auto Farm · v0.0.1</div>
+          <div class="info-notice" style="margin-top:4px;">Get your money up and not your funny up.</div>
+          <button class="update-btn">Check for Update</button>
+        </div>
+
+        <div class="section">
+          <div class="section-label">System</div>
+          <div class="card">
+            <div class="row">
+              <span class="row-label" style="color:var(--text-2)">Screen Size</span>
+              <span id="screenSpec" class="info-spec">Couldn't get screen size</span>
+            </div>
+            <div class="row">
+              <span class="row-label" style="color:var(--text-2)">GPU</span>
+              <span class="info-spec">AMD Radeon RX 6600 XT</span>
+            </div>
+            <div class="row">
+              <span class="row-label" style="color:var(--text-2)">RAM</span>
+              <span class="info-spec">32GB DDR4</span>
+            </div>
+            <div class="row">
+              <span class="row-label" style="color:var(--text-2)">Platform</span>
+              <span class="info-spec">Windows 11 · .NET 8.0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Developers</div>
+          <div class="dev-grid">
+            <div class="dev-card"><div class="dev-name">coconut_man</div><div class="dev-role">UI</div></div>
+            <div class="dev-card"><div class="dev-name">coconut_man</div><div class="dev-role">Scripting</div></div>
+            <div class="dev-card"><div class="dev-name">coconut_man</div><div class="dev-role">Design</div></div>
+            <div class="dev-card"><div class="dev-name">The Community</div><div class="dev-role">Motivation</div></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-label">Legal</div>
+          <div class="card">
+            <div class="row" style="flex-direction:column;align-items:flex-start;gap:4px;">
+              <span class="row-label">MIT License</span>
+              <span class="row-desc">Bloxxy is open-source software licensed under the MIT License.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <div class="statusbar">
+    <div class="status-item" id="statusContainer">
+    <span class="status-dot" id="statusDot"></span>
+    <span id="statusText">Running</span>
+    </div>
+    <div class="status-sep"></div>
+    <div id="screenSize" class="status-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      Couldn't get screen size
+    </div>
+    <div class="status-sep"></div>
+    <div class="status-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      Mouse Event
+    </div>
+    <div class="status-spacer"></div>
+    <div id="robberyOption" class="status-item" style="color:var(--text-3)">None</div>
+  </div>
+
+</div>
+
+<div id="settingsPopup" class="popup-overlay">
+  <div class="popup">
+    <div class="popup-header">
+      <span class="popup-title">Settings Saved</span>
+      <button class="popup-close" id="popupClose">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <div class="popup-body" id="popupBody"></div>
+    <div class="popup-footer">
+      <button class="btn-primary" id="popupOk">OK</button>
+    </div>
+  </div>
+</div>
+
+
+
+</body>
+
+<script src="script.js" defer></script>
+<script src="renderer.js" defer></script>
+</html>

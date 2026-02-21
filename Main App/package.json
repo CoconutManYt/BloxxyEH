@@ -1,0 +1,33 @@
+{
+  "name": "bloxxy-emergencyhamburg",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^26.2.0",
+    "electron-builder": "^24.13.3"
+  },
+  "dependencies": {
+    "electron-store": "^11.0.2",
+    "fkill": "^10.0.3"
+  },
+  "build": {
+    "appId": "bloxxy.eh.uibuild",
+    "productName": "BloxxyEHUI",
+    "win": {
+      "target": "nsis"
+    },
+    "extraResources": [
+      {
+        "from": "modules/",
+        "to": "modules/",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ]
+  }
+}
